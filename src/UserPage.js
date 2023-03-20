@@ -17,7 +17,6 @@ export default function Mainpage(props) {
     navigate("/authentication");
   }
 
-  
   return (
     <div>
        <button className = "charactersPage" onClick = {navigateCharactersPage}>Characters</button>
