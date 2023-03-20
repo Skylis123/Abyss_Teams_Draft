@@ -3,30 +3,30 @@ import  axios  from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function StartPage(props) {
-  let navigate = useNavigate();
+    let navigate = useNavigate();
 
 
-  const addUser = () => {
-    axios.post('http://localhost:4000/register', {
-      username: props.username,
-      password : props.password
-    }).then(() => {
-      console.log("It Works");
-    });
-  };
+    const addUser = () => {
+        axios.post('http://localhost:4000/register', {
+          username: props.username,
+          password : props.password
+        }).then(() => {
+          console.log("It Works");
+        });
+      };
     
-  const logIn = () => {
-    axios.post('http://localhost:4000/login', {
-      username: props.username,
-      password : props.password
+      const logIn = () => {
+        axios.post('http://localhost:4000/login', {
+          username: props.username,
+          password : props.password
         }).then((response) => {
-        if(response.data.message){
-          props.setLogInStatus(response.data.message)
-        } else {
-          navigate("/userpage");
-        }
-    });
-  };
+            if(response.data.message){
+              props.setLogInStatus(response.data.message)
+            } else {
+              navigate("/userpage");
+            }
+        });
+      };
 
   return (
     <div>
