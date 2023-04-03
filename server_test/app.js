@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var app = express();
 
-
 const cors = require('cors');
 
 app.use(cors());
@@ -21,22 +20,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const registerRouter = require('./routes/register');
-const loginRouter = require('./routes/login');
-const addCharacterRouter = require('./routes/addCharacter');
-const removeCharacterRouter = require('./routes/removeCharacter');
-const charactersCountRouter = require('./routes/charactersCount');
-const charactersCheckRouter = require('./routes/charactersCheck');
-const userCharactersListRouter = require('./routes/userCharactersList');
-
-app.use('/register', registerRouter);
-app.use('/login', loginRouter);
-app.use('/addCharacter', addCharacterRouter);
-app.use('/removeCharacter', removeCharacterRouter);
-app.use('/characters/Count', charactersCountRouter);
-app.use('/charactersCheck', charactersCheckRouter);
-app.use('/userCharactersList', userCharactersListRouter);
-
+app.use('/login', require('./routes/user/login'));
+app.use('/register', require('./routes/user/register'));
+app.use('/addCharacter', require('./routes/characters/addCharacter'));
+app.use('/characters/Count', require('./routes/characters/charactersCount'));
+app.use('/charactersCheck', require('./routes/characters/charactersCheck'));
+app.use('/userCharactersList', require('./routes/characters/userCharactersList'));
+app.use('/removeCharacter', require('./routes/characters/removeCharacter'));
 
 app.use(function(req, res, next) {
   next(createError(404));
