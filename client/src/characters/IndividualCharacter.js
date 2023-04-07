@@ -4,7 +4,13 @@ import axios from 'axios';
 
 
 export default function IndividualCharacter(props) {
-  const [characterImage, setCharacterImage] = useState(<img src={require(`/public/images/${props.id.toString()}.png`)} className="characterImage" alt="" style={{ width: "65px", height: "65px" }} />)
+  const [characterImage, setCharacterImage] = useState(
+    <img src={require(`/public/images/${props.id.toString()}.png`)} 
+    className="characterImage" 
+    alt="" 
+    style={{ width: "65px", height: "65px" }} 
+    />
+  )
   const [isChecked, setIsChecked] = useState(false);
 
   const addToUserCharacterList = () => {

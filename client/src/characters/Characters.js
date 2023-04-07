@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import IndividualCharacter from './IndividualCharacter';
 import axios from 'axios';
 
+
 export default function Characters(props) {
   let navigate = useNavigate();
   let [userCharactersList, setUserCharactersList] = useState([]);
@@ -46,7 +47,7 @@ export default function Characters(props) {
       </div>
       <div>
         {userCharactersList.map((id, key) => {
-          return <label key={key}>{charactersList[id]}</label>
+          return <label key={id}>{charactersList[id]}</label>
         })}
       </div>
     </div>

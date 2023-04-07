@@ -3,6 +3,7 @@ import StartPage from './StartPage';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import UserPage from './user/UserPage';
 import Characters from './characters/Characters';
+import Draft from './draft/Draft';
 
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
   const [password, setPassword] = useState("");
   const [logInStatus, setLogInStatus] = useState("");
   const [charactersCount, setCharactersCount] = useState(0);
-
+  const [userUnlockedCharacters, setUserUnlockedCharacters] = useState([]);
+  
   useEffect(() => {
     fetch('http://localhost:4000/characters/Count')
       .then(response => response.json())
@@ -19,6 +21,9 @@ function App() {
       })
       .catch(error => console.log(error));
   }, []);
+  
+
+
 
   return (
     <Router>
@@ -42,6 +47,8 @@ function App() {
             setPassword={setPassword}
             logInStatus={logInStatus}
             setLogInStatus={setLogInStatus}
+            userUnlockedCharacters = {userUnlockedCharacters}
+            setUserUnlockedCharacters = {setUserUnlockedCharacters}
           />}
         />
         <Route path="/user/:username/characters/" element={
@@ -49,6 +56,15 @@ function App() {
             username={username}
             setUsername={setUsername}
             charactersCount={charactersCount}
+          />}
+        />
+        <Route path="/user/:username/draft/" element={
+          <Draft
+            username={username}
+            setUsername={setUsername}
+            charactersCount={charactersCount}
+            userUnlockedCharacters = {userUnlockedCharacters}
+            setUserUnlockedCharacters = {setUserUnlockedCharacters}
           />}
         />
       </Routes>
