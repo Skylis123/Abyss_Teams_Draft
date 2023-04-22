@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import IndividualCharacter from './IndividualCharacter';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 
 
 export default function Characters(props) {
@@ -10,6 +11,7 @@ export default function Characters(props) {
   let [userCharactersList, setUserCharactersList] = useState([]);
   let [charactersList, setCharactersList] = useState([]);
   let [procEffect, setProcEffect] = useState(true)
+  let [characterListUpdated, setCharacterListUpdated] = useState([]);
 
   const navigateUserPage = () => {
     navigate(`/user/${props.username}`);
@@ -35,21 +37,55 @@ export default function Characters(props) {
   }, [props.username, procEffect]);
 
 
+  
+  
   return (
     <div>
       <div>
-        <button className="navigateUserPage" onClick={navigateUserPage}> Back </button>
+        <Button className="btn btn-secondary mr-4" variant="secondary" onClick={navigateUserPage}>Back</Button>
       </div>
-      <div>
-        {charactersList.map((chars, key) => {
-          return <label key={key}>{chars}</label>
-        })}
-      </div>
-      <div>
-        {userCharactersList.map((id, key) => {
-          return <label key={id}>{charactersList[id]}</label>
-        })}
+      <div className="container-fluid">
+        <div className = "row">
+          <div className='col'>
+            <label className = "text-white" style={{marginLeft: "250px"}}>Characters Pool</label>
+          </div>
+          <div className='col'>
+            <label className = "text-white" style={{marginLeft: "300px"}}>Characters Unlocked</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6" style={{ width: "600px", height: "450px", overflow: "auto", marginRight: "140px", marginLeft: "30px",border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px"}}>
+            <div>
+            {charactersList.map((chars, key) => {
+              return <label key={key}>{chars}</label>
+            })}
+            </div>
+          </div>
+          <div className="col-md-6" style={{ width: "600px", height: "450px", overflow: "auto",border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px"}}>
+            <div>
+              {userCharactersList.map((id, key) => {
+                return <label key={id}>{charactersList[id]}</label>
+              })}
+            </div>
+            <style>
+              {`
+                ::-webkit-scrollbar {
+                  width: 10px;
+                  height: 10px;
+                }
+                ::-webkit-scrollbar-thumb {
+                  background-color: transparent;
+                }
+              `}
+            </style>
+          </div>
+        </div>
       </div>
     </div>
-  )
+  );
+  
+
+  
+
+
 }
