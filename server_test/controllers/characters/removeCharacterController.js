@@ -1,4 +1,4 @@
-const removeCharacterQuerry = require('../../helper/characters/removeCharacterQuery')
+const removeCharacterQuerry = require('../../helper/db/characters')
 
 exports.removeCharacter = (req, res) => {
     const username = req.body.username;

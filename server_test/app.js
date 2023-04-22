@@ -27,6 +27,10 @@ app.use('/characters/Count', require('./routes/characters/charactersCount'));
 app.use('/charactersCheck', require('./routes/characters/charactersCheck'));
 app.use('/userCharactersList', require('./routes/characters/userCharactersList'));
 app.use('/removeCharacter', require('./routes/characters/removeCharacter'));
+app.use('/characters/Name',require('./routes/characters/charactersName'));
+
+
+
 
 app.use(function(req, res, next) {
   next(createError(404));

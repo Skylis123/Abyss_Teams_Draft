@@ -1,4 +1,4 @@
-const registerQuery = require('../../helper/user/registerQuery')
+const registerQuery = require('../../helper/db/user')
 
 exports.register = (req, res) => {
   const username = req.body.username;
@@ -7,7 +7,7 @@ exports.register = (req, res) => {
   registerQuery.register(username, password, (err, result)=> {
     if(err) {
       console.log(err);
-    } else {
+    } else {s
       console.log(result)
     }
   })

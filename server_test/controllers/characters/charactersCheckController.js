@@ -1,4 +1,4 @@
-const charactersCheckQuery = require('../../helper/characters/charactersCheckQuery')
+const charactersCheckQuery = require('../../helper/db/characters')
 
 exports.charactersCheck = (req, res) => {
     const username = req.body.username;

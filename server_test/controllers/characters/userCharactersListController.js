@@ -1,5 +1,5 @@
 const client = require("../../helper/database")
-const userCharactersListQuery = require('../../helper/characters/userCharactersListQuery')
+const userCharactersListQuery = require('../../helper/db/characters')
 
 exports.userCharactersList = (req, res) => {
     const username = req.body.username;

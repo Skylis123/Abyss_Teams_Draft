@@ -11,6 +11,8 @@ export default function IndividualCharacter(props) {
     style={{ width: "65px", height: "65px" }} 
     />
   )
+
+  const [characterName, setCharacterName] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
   const addToUserCharacterList = () => {
@@ -22,7 +24,6 @@ export default function IndividualCharacter(props) {
         console.log("Character added to the list");
         setIsChecked(true);
         props.setProcEffect(!props.procEffect);
-        console.log(props.procEffect);
       }).catch((error) => {
         console.log("Error adding character to user list");
       });
@@ -34,7 +35,6 @@ export default function IndividualCharacter(props) {
         console.log("Character removed from the list");
         setIsChecked(false);
         props.setProcEffect(!props.procEffect);
-        console.log(props.procEffect);
       }).catch((error) => {
         console.log("Error removing character from the list");
       });
@@ -52,10 +52,23 @@ export default function IndividualCharacter(props) {
     })
   },);
 
+  useEffect(()=> {
+    axios.post('http://localhost:4000/characters/Name',{
+      id: props.id
+    }).then((response)=>{
+      setCharacterName(response.data);
+      console.log(response.data);
+    }).catch((error) => {
+      console.log("Unable to get characters name")
+    })
+  })
+
+
+
   return (
     <div>
       <button className="btn btn-transparent individualCharacter" onClick={addToUserCharacterList}>{characterImage}</button>
-      <input type="checkbox" checked={isChecked} disabled={true} />
+      <div className="text-center flex fs-6 text-white">{characterName}</div>
     </div>
   )
 }

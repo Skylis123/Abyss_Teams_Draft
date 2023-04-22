@@ -7,7 +7,7 @@ export default function IndividualCharacterDraft(props) {
         <img src={require(`/public/images/${props.id.toString()}.png`)}
             className="characterImage"
             alt=""
-            style={{ width: "65px", height: "65px" }}
+            style={{ width: "100px", height: "100px" }}
         />
     )
 

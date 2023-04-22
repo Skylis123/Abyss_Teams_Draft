@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import IndividualCharacterDraft from './IndividualCharacterDraft';
+import { Card } from 'react-bootstrap';
 
 
 export default function CharactersDraft(props) {
@@ -54,23 +55,30 @@ export default function CharactersDraft(props) {
     }, [props.restart])
 
     return (
-        <div>
-            <div>
+        <div class="card bg-transparent d-flex w-50 mx-auto " style={{border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px"}}>
+            <div class="col d-flex justify-content-center" style={{border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px"}}>
                 {playList.map((char, key) => {
                     return <label key={key}>{char}</label>
                 })}
             </div>
-            <div>
-                {teamA.map((char, key) => {
-                    return <label key={key}>{char}</label>
-                })}
-            </div>
-            <div>
-                {teamB.map((char, key) => {
-                    return <label key={key}>{char}</label>
-                })}
+            <div class="card-body">
+                <div class="container-sm-2 ">
+                    <div class="col text-white text-center" >First Team</div>
+                    <div class= "col" style={{height: "80px", marginLeft: "200px"}}>
+                        {teamA.map((char, key) => {
+                            return <label key={key}>{char}</label>
+                        })}
+                    </div>
+                </div>
+                <div class="container-sm-2 ">
+                    <div class="col text-white text-center">Second Team</div>
+                    <div class="col" style={{height: "60px", marginLeft: "200px"}}>
+                        {teamB.map((char, key) => {
+                            return <label key={key}>{char}</label>
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
-

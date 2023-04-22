@@ -1,4 +1,4 @@
-const loginQuery = require('../../helper/user/loginQuery')
+const loginQuery = require('../../helper/db/user')
 
 exports.login = (req, res) => {
   const username = req.body.username;

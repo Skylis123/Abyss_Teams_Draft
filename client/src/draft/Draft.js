@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import CharactersDraft from '../characters/CharactersDraft';
+import { Button } from 'react-bootstrap';
 
 
 export default function Draft(props) {
@@ -25,8 +26,8 @@ export default function Draft(props) {
   return (
     <div>
       <div>
-        <button className="navigateUserPage" onClick={navigateUserPage}> Back </button>
-        <button className="restart" onClick={restartFunction}> Restart </button>
+        <Button className="btn btn-secondary" variant="secondary" onClick={navigateUserPage}>Back</Button>
+        <Button className="btn btn-secondary" variant="secondary" onClick={restartFunction}>Restart</Button>
       </div>
       <div>
         <CharactersDraft
@@ -39,3 +40,5 @@ export default function Draft(props) {
     </div>
   )
 }
+
+

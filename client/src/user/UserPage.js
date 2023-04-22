@@ -33,10 +33,25 @@ export default function Mainpage(props) {
 
 
   return (
-    <div className="d-flex flex-column align-items-center">
-      <Button className="my-3 btn-block" variant="secondary" onClick={navigateCharactersPage}>Characters</Button>
-      <Button className="my-3 btn-block" variant="secondary" onClick={navigateDraftPage}>Draft</Button>
-      <Button className="my-3 btn-block" variant="secondary" onClick={navigateAuthenticationPage}>Sign out</Button>
+    <div className="container ">
+      <div className="row">
+        <div className="col-8"></div>
+        <div className="col-4 text-end">
+          <div>
+            <Button className="my-3 btn-block" variant="secondary" onClick={navigateAuthenticationPage}>Sign out</Button>
+          </div>
+        </div>
+      </div>
+      <div class="row gx-2" style={{ justifyContent: "center" }}>
+        <div class="col-2 d-flex justify-content-center">
+          <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateCharactersPage}>Characters</Button>
+        </div>
+        <div class="col-2 d-flex justify-content-center">
+          <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateDraftPage}>Draft</Button>
+        </div>
+      </div>
     </div>
-  )
+  );
+  
+  
 }

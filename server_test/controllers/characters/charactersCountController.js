@@ -1,4 +1,4 @@
-const charactersCountQuery = require('../../helper/characters/charactersCountQuery')
+const charactersCountQuery = require('../../helper/db/characters')
 
 exports.charactersCount = (req, res) => {
 
