@@ -28,6 +28,11 @@ app.use('/charactersCheck', require('./routes/characters/charactersCheck'));
 app.use('/userCharactersList', require('./routes/characters/userCharactersList'));
 app.use('/removeCharacter', require('./routes/characters/removeCharacter'));
 app.use('/characters/Name',require('./routes/characters/charactersName'));
+app.use('/character/rating',require('./routes/characters/characterRating'));
+app.use('/user/history',require('./routes/user/history'));
+app.use('/user/historyList',require('./routes/user/historyList'));
+app.use('/characters/Details', require('./routes/characters/charactersDetails'));
+
 
 
 

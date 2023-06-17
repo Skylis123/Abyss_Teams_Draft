@@ -57,7 +57,6 @@ export default function IndividualCharacter(props) {
       id: props.id
     }).then((response)=>{
       setCharacterName(response.data);
-      console.log(response.data);
     }).catch((error) => {
       console.log("Unable to get characters name")
     })

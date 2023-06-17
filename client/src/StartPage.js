@@ -6,7 +6,6 @@ import { Button } from 'react-bootstrap';
 export default function StartPage(props) {
   let navigate = useNavigate();
 
-
   const addUser = () => {
     axios.post('http://localhost:4000/register', {
       username: props.username,

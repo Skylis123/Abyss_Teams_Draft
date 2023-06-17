@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import UserPage from './user/UserPage';
 import Characters from './characters/Characters';
 import Draft from './draft/Draft';
+import History from './user/History';
+import CharactersDetail from './characters/CharactersDetail';
+import IndividualCharacterId from './characters/IndividualCharacterId';
 
 
 function App() {
@@ -12,7 +15,8 @@ function App() {
   const [logInStatus, setLogInStatus] = useState("");
   const [charactersCount, setCharactersCount] = useState(0);
   const [userUnlockedCharacters, setUserUnlockedCharacters] = useState([]);
-  
+  const [individualCharacterId, setIndiviualCharacterId] = useState(0);
+
   useEffect(() => {
     fetch('http://localhost:4000/characters/Count')
       .then(response => response.json())
@@ -21,7 +25,6 @@ function App() {
       })
       .catch(error => console.log(error));
   }, []);
-  
 
 
 
@@ -47,8 +50,8 @@ function App() {
             setPassword={setPassword}
             logInStatus={logInStatus}
             setLogInStatus={setLogInStatus}
-            userUnlockedCharacters = {userUnlockedCharacters}
-            setUserUnlockedCharacters = {setUserUnlockedCharacters}
+            userUnlockedCharacters={userUnlockedCharacters}
+            setUserUnlockedCharacters={setUserUnlockedCharacters}
           />}
         />
         <Route path="/user/:username/characters/" element={
@@ -63,8 +66,31 @@ function App() {
             username={username}
             setUsername={setUsername}
             charactersCount={charactersCount}
-            userUnlockedCharacters = {userUnlockedCharacters}
-            setUserUnlockedCharacters = {setUserUnlockedCharacters}
+            userUnlockedCharacters={userUnlockedCharacters}
+            setUserUnlockedCharacters={setUserUnlockedCharacters}
+          />}
+        />
+        <Route path="/user/:username/history/" element={
+          <History
+            username={username}
+            setUsername={setUsername}
+          />}
+        />
+        <Route path="/user/:username/charactersDetail/" element={
+          <CharactersDetail
+            username={username}
+            setUsername={setUsername}
+            charactersCount={charactersCount}
+            setCharactersCount={setCharactersCount}
+            individualCharacterId={individualCharacterId}
+            setIndiviualCharacterId={setIndiviualCharacterId}
+
+          />}
+        />
+        <Route path="/user/:username/individualCharacterId/" element={
+          <IndividualCharacterId
+            individualCharacterId={individualCharacterId}
+            username = {username}
           />}
         />
       </Routes>

@@ -11,7 +11,8 @@ export default function Characters(props) {
   let [userCharactersList, setUserCharactersList] = useState([]);
   let [charactersList, setCharactersList] = useState([]);
   let [procEffect, setProcEffect] = useState(true)
-  let [characterListUpdated, setCharacterListUpdated] = useState([]);
+  let [characterListPool, setCharacterListPool] = useState([]);
+  let [characterListPoolUnlocked, setCharacterListPoolUnlocked] = useState([]);
 
   const navigateUserPage = () => {
     navigate(`/user/${props.username}`);
@@ -30,40 +31,46 @@ export default function Characters(props) {
       username: props.username,
     }).then((response) => {
       setUserCharactersList(response.data);
-      console.log(response.data)
     }).catch((error) => {
       console.log("Error");
     })
   }, [props.username, procEffect]);
 
+  useEffect(() => {
+    let ids = charactersList.map(char => char.props.id);
+    let filteredIdsPool = ids.filter(id => !userCharactersList.includes(id));
+    let filterIdsPoolUnlocked = ids.filter(id => userCharactersList.includes(id));
+    setCharacterListPool(filteredIdsPool);
+    setCharacterListPoolUnlocked(filterIdsPoolUnlocked)
+  }, [charactersList, procEffect, userCharactersList]);
 
-  
-  
+
+
   return (
     <div>
       <div>
         <Button className="btn btn-secondary mr-4" variant="secondary" onClick={navigateUserPage}>Back</Button>
       </div>
       <div className="container-fluid">
-        <div className = "row">
+        <div className="row">
           <div className='col'>
-            <label className = "text-white" style={{marginLeft: "250px"}}>Characters Pool</label>
+            <label className="text-white" style={{ marginLeft: "250px" }}>Characters Pool</label>
           </div>
           <div className='col'>
-            <label className = "text-white" style={{marginLeft: "300px"}}>Characters Unlocked</label>
+            <label className="text-white" style={{ marginLeft: "300px" }}>Characters Unlocked</label>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6" style={{ width: "600px", height: "450px", overflow: "auto", marginRight: "140px", marginLeft: "30px",border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px"}}>
+          <div className="col-md-6" style={{ width: "600px", height: "450px", overflow: "auto", marginRight: "140px", marginLeft: "30px", border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px" }}>
             <div>
-            {charactersList.map((chars, key) => {
-              return <label key={key}>{chars}</label>
-            })}
+              {characterListPool.map((idc, key) => {
+                return <label key={idc}>{charactersList[idc]}</label>
+              })}
             </div>
           </div>
-          <div className="col-md-6" style={{ width: "600px", height: "450px", overflow: "auto",border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px"}}>
+          <div className="col-md-6" style={{ width: "600px", height: "450px", overflow: "auto", border: "2px solid rgba(128, 128, 128, 0.5)", borderRadius: "10px", padding: "10px" }}>
             <div>
-              {userCharactersList.map((id, key) => {
+              {characterListPoolUnlocked.map((id, key) => {
                 return <label key={id}>{charactersList[id]}</label>
               })}
             </div>
@@ -83,9 +90,9 @@ export default function Characters(props) {
       </div>
     </div>
   );
-  
 
-  
+
+
 
 
 }

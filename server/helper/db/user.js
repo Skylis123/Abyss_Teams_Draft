@@ -22,7 +22,6 @@ function login(username, password, callback) {
 }
 
 function register(username, password, callback) {
-
     client.query(
         "INSERT INTO testreglog (username,password) VALUES ($1, $2)",
         [username, password],
@@ -36,6 +35,35 @@ function register(username, password, callback) {
       );  
 }
 
+function history (date ,username ,teamA_1 ,teamA_2 ,teamA_3 ,teamA_4 ,teamB_1 ,teamB_2 ,teamB_3 ,teamB_4 ,rating ,callback) {
+ client.query(
+  "INSERT INTO history (username ,date , teamA_1 ,teamA_2 ,teamA_3 ,teamA_4 ,teamB_1 ,teamB_2 ,teamB_3 ,teamB_4, rating) VALUES($1 ,$2 ,$3 ,$4 ,$5 ,$6 ,$7 ,$8 ,$9 ,$10 ,$11)",
+  [username ,date ,teamA_1 ,teamA_2 ,teamA_3 ,teamA_4 ,teamB_1 ,teamB_2 ,teamB_3 ,teamB_4, rating],
+  (err, result) => {
+    if (err) {
+      return callback(err, null);
+    } else {
+      callback(null, "works")
+    }
+  }
+ )
+}
+
+function historyList(username, callback) {
+  client.query(
+      "SELECT * FROM history where username = $1 ",
+      [username],
+      (err, result) => {
+        if (err) {
+          return callback(err, null);
+        } else {
+          callback(null, result.rows)
+        }
+      }
+    );  
+}
 
 
-module.exports = { login, register };
+
+
+module.exports = { login, register, history ,historyList };

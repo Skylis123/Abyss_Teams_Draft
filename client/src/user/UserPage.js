@@ -19,13 +19,19 @@ export default function Mainpage(props) {
     props.setLogInStatus("");
     navigate("/authentication");
   }
+  const navigateHistory = () => {
+    navigate(`/user/${props.username}/history`)
+  }
+
+  const navigateCharactersDetail = () => {
+    navigate(`/user/${props.username}/charactersDetail`)
+  }
 
   useEffect(() => {
     axios.post('http://localhost:4000/userCharactersList', {
       username: props.username,
     }).then((response) => {
       props.setUserUnlockedCharacters(response.data);
-      console.log(response.data)
     }).catch((error) => {
       console.log(error);
     })
@@ -43,11 +49,17 @@ export default function Mainpage(props) {
         </div>
       </div>
       <div class="row gx-2" style={{ justifyContent: "center" }}>
+      <div class="col-2 d-flex justify-content-center">
+          <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateCharactersDetail}>Characters Details</Button>
+        </div>
         <div class="col-2 d-flex justify-content-center">
-          <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateCharactersPage}>Characters</Button>
+          <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateCharactersPage}>User Characters</Button>
         </div>
         <div class="col-2 d-flex justify-content-center">
           <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateDraftPage}>Draft</Button>
+        </div>
+        <div class="col-2 d-flex justify-content-center">
+          <Button className="my-3 btn-block w-100" variant="secondary" onClick={navigateHistory}>History</Button>
         </div>
       </div>
     </div>

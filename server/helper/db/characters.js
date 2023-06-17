@@ -84,13 +84,40 @@ function charactersName(id, callback) {
                 return callback('Error', null);
             } else {
                 const characterName = result.rows[0].character_name;
-                callback(null,characterName)
+                callback(null, characterName)
             }
         }
     );
 }
 
+function characterRating(id, callback) {
+    client.query(
+      'SELECT character_rating FROM characters WHERE character_id = $1',
+      [id],
+      (err, result) => {
+        if (err) {
+          return callback('Error', null);
+        } else {
+          const characterRating = result.rows[0].character_rating;  
+          callback(null, characterRating);
+        }
+      }
+    );
+  }
 
+  function charactersDetail(id, callback) {
+    client.query(
+      "SELECT * FROM characters WHERE character_id = $1",
+      [id],
+      (err, result) => {
+        if (err) {
+          return callback('Error', null);
+        } else {
+          callback(null, result.rows);
+        }
+      }
+    );
+  }
 
 
 module.exports = {
@@ -98,6 +125,8 @@ module.exports = {
     charactersCheck,
     characterCount,
     removeCharacter,
-    userCharactersList, 
-    charactersName
+    userCharactersList,
+    charactersName,
+    characterRating,
+    charactersDetail
 };

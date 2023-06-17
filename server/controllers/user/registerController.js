@@ -7,7 +7,7 @@ exports.register = (req, res) => {
   registerQuery.register(username, password, (err, result)=> {
     if(err) {
       console.log(err);
-    } else {s
+    } else {
       console.log(result)
     }
   })
